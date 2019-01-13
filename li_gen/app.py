@@ -1,7 +1,7 @@
 from datetime import datetime
 
-from peewee import CharField, Model, SqliteDatabase, TextField
 from flask import Flask, render_template_string, request
+from peewee import CharField, Model, SqliteDatabase, TextField
 
 app = Flask(__name__)
 db = SqliteDatabase('licenses.db')
@@ -38,4 +38,5 @@ def server_error(error):
     return 'Something went wrong'
 
 
-app.run()
+if __name__ == '__main__':
+    app.run(debug=True)
