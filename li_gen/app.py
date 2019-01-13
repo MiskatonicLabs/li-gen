@@ -1,10 +1,18 @@
 from datetime import datetime
 
+from peewee import CharField, Model, SqliteDatabase, TextField
 from quart import Quart, render_template_string, request
 
-from models import License
-
 app = Quart(__name__)
+db = SqliteDatabase('licenses.db')
+
+
+class License(Model):
+    name = CharField()
+    text = TextField()
+
+    class Meta:
+        database = db
 
 
 @app.route('/')
@@ -22,7 +30,7 @@ async def license():
 
 @app.errorhandler(404)
 def not_found(error):
-    return 'Not found, weirdo'
+    return 'Not found'
 
 
 @app.errorhandler(500)
