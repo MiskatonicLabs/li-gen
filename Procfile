@@ -1,1 +1,1 @@
-web gunicorn miskatonic.app:app
+web gunicorn li_gen.app:app
