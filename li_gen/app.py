@@ -1,9 +1,9 @@
 from datetime import datetime
 
 from peewee import CharField, Model, SqliteDatabase, TextField
-from quart import Quart, render_template_string, request
+from flask import Flask, render_template_string, request
 
-app = Quart(__name__)
+app = Flask(__name__)
 db = SqliteDatabase('licenses.db')
 
 
@@ -16,13 +16,13 @@ class License(Model):
 
 
 @app.route('/')
-async def index():
+def index():
     return 'Hello world'
 
 
 @app.route('/license')
-async def license():
-    return await render_template_string(
+def license():
+    return render_template_string(
         f'<pre>{License.get(License.name == request.args.get("license")).text}</pre>',
         **{'year': datetime.now().year, **request.args}
     )
