@@ -383,7 +383,7 @@ description = "Backported and Experimental Type Hints for Python 3.5+"
 name = "typing-extensions"
 optional = false
 python-versions = "*"
-version = "3.6.6"
+version = "3.7.2"
 
 [package.dependencies]
 typing = ">=3.6.2"
@@ -452,6 +452,6 @@ sortedcontainers = ["974e9a32f56b17c1bac2aebd9dcf197f3eb9cd30553c5852a3187ad162e
 sphinx = ["429e3172466df289f0f742471d7e30ba3ee11f3b5aecd9a840480d03f14bcfe5", "c4cb17ba44acffae3d3209646b6baec1e215cad3065e852c68cc569d4df1b9f8"]
 sphinxcontrib-websupport = ["68ca7ff70785cbe1e7bccc71a48b5b6d965d79ca50629606c7861a21b206d9dd", "9de47f375baf1ea07cdb3436ff39d7a9c76042c10a769c52353ec46e4e8fc3b9"]
 typing = ["4027c5f6127a6267a435201981ba156de91ad0d1d98e9ddc2aa173453453492d", "57dcf675a99b74d64dacf6fba08fb17cf7e3d5fdff53d4a30ea2a5e7e52543d4", "a4c8473ce11a65999c8f59cb093e70686b6c84c98df58c1dae9b3b196089858a"]
-typing-extensions = ["2a6c6e78e291a4b6cbd0bbfd30edc0baaa366de962129506ec8fe06bdec66457", "51e7b7f3dcabf9ad22eed61490f3b8d23d9922af400fe6656cb08e66656b701f", "55401f6ed58ade5638eb566615c150ba13624e2f0c1eedd080fc3c1b6cb76f1d"]
+typing-extensions = ["07b2c978670896022a43c4b915df8958bec4a6b84add7f2c87b2b728bda3ba64", "f3f0e67e1d42de47b5c67c32c9b26641642e9170fe7e292991793705cd5fef7c", "fb2cd053238d33a8ec939190f30cfd736c00653a85a2919415cecf7dc3d9da71"]
 urllib3 = ["61bf29cada3fc2fbefad4fdf059ea4bd1b4a86d2b6d15e1c7c0b582b9752fe39", "de9529817c93f27c8ccbfead6985011db27bd0ddfcdb2d86f3f663385c6a9c22"]
 wsproto = ["1fcb726d448f1b9bcbea884e26621af5ddd01d2d502941a024f4c727828b6009", "6a51cf18d9de612892b9c1d38a8c1bdadec0cfe15de61cd5c0f09174bf0c7e82"]
