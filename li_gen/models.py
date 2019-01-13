@@ -1,5 +1,4 @@
-from peewee import *
-
+from peewee import CharField, Model, SqliteDatabase, TextField
 
 db = SqliteDatabase('licenses.db')
 
