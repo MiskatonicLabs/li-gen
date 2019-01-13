@@ -1,1 +1,1 @@
-web gunicorn li_gen.app:app
+web hypercorn li_gen.app:app

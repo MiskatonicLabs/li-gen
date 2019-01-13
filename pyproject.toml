@@ -8,7 +8,7 @@ authors = ["Neil Munro"]
 python = "^3.7"
 quart = "^0.7.2"
 peewee = "^3.8"
-gunicorn = "^19.9"
+hypercorn = "^0.4.6"
 
 [tool.poetry.dev-dependencies]
 coverage = "^4.5"
