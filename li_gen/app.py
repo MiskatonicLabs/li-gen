@@ -1,12 +1,14 @@
 from datetime import datetime
+from functools import total_ordering
 
-from flask import Flask, render_template_string, request
+from flask import Flask, render_template, render_template_string, request
 from peewee import CharField, Model, SqliteDatabase, TextField
 
 app = Flask(__name__)
 db = SqliteDatabase('licenses.db')
 
 
+@total_ordering
 class License(Model):
     name = CharField()
     text = TextField()
@@ -14,10 +16,19 @@ class License(Model):
     class Meta:
         database = db
 
+    def __eq__(self, other):
+        return self.name == other.name
+
+    def __lt__(self, other):
+        return self.name < other.name
+
+    def __str__(self):
+        return self.name
+
 
 @app.route('/')
 def index():
-    return 'Hello world'
+    return render_template('index.html', licenses=sorted(License.select()))
 
 
 @app.route('/license')
