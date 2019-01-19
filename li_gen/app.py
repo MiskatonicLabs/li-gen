@@ -33,10 +33,12 @@ def index():
 
 @app.route('/license')
 def license():
-    return render_template_string(
-        f'<pre>{License.get(License.name == request.args.get("license")).text}</pre>',
-        **{'year': datetime.now().year, **request.args}
-    )
+    license_text = License.get(License.name == request.args.get('license')).text
+
+    if not request.args.get('raw', '').lower() == 'true':
+        return render_template_string(f'<pre>{license_text}</pre>', **{'year': datetime.now().year, **request.args})
+
+    return render_template_string(license_text, **{'year': datetime.now().year, **request.args})
 
 
 @app.errorhandler(404)
