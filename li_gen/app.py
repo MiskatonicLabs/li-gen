@@ -1,11 +1,13 @@
 from datetime import datetime
 from functools import total_ordering
+import os
 
-from flask import Flask, render_template, render_template_string, request
+from flask import Flask, render_template, render_template_string, request, g
 from peewee import CharField, Model, PostgresqlDatabase, TextField
+from playhouse.db_url import connect
 
 app = Flask(__name__)
-db = PostgresqlDatabase('li-gen')
+db = connect(os.getenv('DATABASE_URL'))
 
 
 @total_ordering
@@ -39,6 +41,17 @@ def license():
         return render_template_string(f'<pre>{license_text}</pre>', **{'year': datetime.now().year, **request.args})
 
     return render_template_string(license_text, **{'year': datetime.now().year, **request.args})
+
+@app.before_request
+def before_request():
+    g.db = db
+    g.db.connect()
+
+
+@app.after_request
+def after_request(response):
+    g.db.close()
+    return response
 
 
 @app.errorhandler(404)
