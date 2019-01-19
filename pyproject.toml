@@ -10,6 +10,7 @@ peewee = "^3.8"
 hypercorn = "^0.4.6"
 flask = "^1.0"
 gunicorn = "^19.9"
+postgres = "^2.2"
 
 [tool.poetry.dev-dependencies]
 coverage = "^4.5"

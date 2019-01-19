@@ -2,10 +2,10 @@ from datetime import datetime
 from functools import total_ordering
 
 from flask import Flask, render_template, render_template_string, request
-from peewee import CharField, Model, SqliteDatabase, TextField
+from peewee import CharField, Model, PostgresqlDatabase, TextField
 
 app = Flask(__name__)
-db = SqliteDatabase('licenses.db')
+db = PostgresqlDatabase('li-gen')
 
 
 @total_ordering
