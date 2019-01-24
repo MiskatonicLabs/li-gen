@@ -1,51 +1,20 @@
-import os
 from datetime import datetime
-from functools import total_ordering
 
 from flask import Flask, g, render_template, render_template_string, request
-from peewee import CharField, Model, TextField
-from playhouse.db_url import connect
+
+from .api.api import api
+from .config import Config
+from .models import License
 
 app = Flask(__name__)
-db = connect(os.getenv('DATABASE_URL'))
+app.register_blueprint(api)
 
-
-@total_ordering
-class License(Model):
-    name = CharField()
-    text = TextField()
-
-    class Meta:
-        database = db
-
-    def __eq__(self, other):
-        return self.name == other.name
-
-    def __lt__(self, other):
-        return self.name < other.name
-
-    def __str__(self):
-        return self.name
-
-
-@app.route('/')
-def index():
-    return render_template('index.html', licenses=sorted(License.select()))
-
-
-@app.route('/license')
-def license():
-    license_text = License.get(License.name == request.args.get('license')).text
-
-    if not request.args.get('raw', '').lower() == 'true':
-        return render_template_string(f'<pre>{license_text}</pre>', **{'year': datetime.now().year, **request.args})
-
-    return render_template_string(license_text, **{'year': datetime.now().year, **request.args})
+app.config['SECRET_KEY'] = Config.SECRET_KEY
 
 
 @app.before_request
 def before_request():
-    g.db = db
+    g.db = Config.db
     g.db.connect()
 
 
@@ -63,6 +32,21 @@ def not_found(error):
 @app.errorhandler(500)
 def server_error(error):
     return 'Something went wrong'
+
+
+@app.route('/')
+def index():
+    return render_template('index.html', licenses=sorted(License.select()))
+
+
+@app.route('/license')
+def license():
+    license_text = License.get(License.name == request.args.get('license')).text
+
+    if not request.args.get('raw', '').lower() == 'true':
+        return render_template_string(f'<pre>{license_text}</pre>', **{'year': datetime.now().year, **request.args})
+
+    return render_template_string(license_text, **{'year': datetime.now().year, **request.args})
 
 
 if __name__ == '__main__':

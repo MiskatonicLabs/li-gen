@@ -5,7 +5,7 @@ env:
 	@poetry install
 
 run:
-	@FLASK_APP=li_gen/app.py poetry run flask run
+	@source .env; poetry run flask run
 
 test:
 	@poetry run coverage run --branch -m unittest discover && poetry run coverage html
