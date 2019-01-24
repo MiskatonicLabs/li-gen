@@ -8,7 +8,7 @@ run:
 	@source .env; poetry run flask run
 
 test:
-	@poetry run coverage run --branch -m unittest discover && poetry run coverage html
+	@source .env; poetry run coverage run --branch -m unittest discover && poetry run coverage html
 
 requires:
 	@poetry show --no-dev | tr -s " " | sed 's/ /==/' | sed 's/ .*//' > requirements.txt
