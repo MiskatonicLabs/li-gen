@@ -11,6 +11,7 @@ class Category(models.Model):
     def __repr__(self):
         return f'<License: {str(self)}>'
 
+
 class License(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     title = models.CharField(max_length=255)

@@ -14,5 +14,5 @@ class LicenseView(TemplateView):
 
     def post(self, request):
         license_template = Template(f'<pre>{License.objects.get(slug=request.POST["license"]).text}</pre>')
-        context = Context({k:v for k, v in request.POST.items() if not k == 'license'})
+        context = Context({k: v for k, v in request.POST.items() if not k == 'license'})
         return HttpResponse(license_template.render(context))
