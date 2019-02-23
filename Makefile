@@ -1,8 +1,11 @@
-.PHONY: env run test lint requires docs
+.PHONY: env local_run run test lint requires docs
 .DEFAULT: env
 
 env:
 	@poetry install
+
+local_run:
+	@source .env; poetry run python manage.py runserver 0.0.0.0:8000
 
 run:
 	@source .env; poetry run gunicorn li_gen.wsgi --log-file -
