@@ -1,1 +1,1 @@
-web: gunicorn li_gen.wsgi --log-file -
+web: gunicorn li_gen.li_gen.wsgi --log-file -

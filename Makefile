@@ -5,7 +5,7 @@ env:
 	@poetry install
 
 run:
-	@source .env; poetry run python li_gen/manage.py runserver
+	@source .env; cd li_gen/; poetry run gunicorn li_gen.wsgi --log-file -
 
 static:
 	@source .env; poetry run python li_gen/manage.py collectstatic
