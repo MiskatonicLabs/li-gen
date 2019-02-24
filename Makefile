@@ -5,7 +5,7 @@ env:
 	@poetry install
 
 local_run:
-	@source .env; poetry run python manage.py runserver 0.0.0.0:8000
+	@source .env; poetry run python manage.py runserver 0.0.0.0:8000 --settings=li_gen.settings.local
 
 run:
 	@source .env; poetry run gunicorn li_gen.wsgi --log-file -
