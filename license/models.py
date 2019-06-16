@@ -15,6 +15,7 @@ class Category(models.Model):
 class License(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     title = models.CharField(max_length=255)
+    version = models.CharField(max_length=255)
     slug = models.SlugField(max_length=255)
     text = models.TextField()
     details = models.URLField(max_length=255)
