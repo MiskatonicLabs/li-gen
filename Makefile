@@ -1,4 +1,4 @@
-.PHONY: env local_run run test lint requires docs
+.PHONY: env local_run run test lint requires docs migrate migrations
 .DEFAULT: env
 
 env:
@@ -21,6 +21,12 @@ requires:
 
 lint:
 	@poetry run isort --virtual-env .venv li_gen/*.py && poetry run flake8
+
+migrations:
+	@source .env; poetry run python ./manage.py makemigrations
+
+migrate:
+	@source .env; poetry run python ./manage.py migrate
 
 docs:
 	@poetry run sphinx-apidoc -f -o docs/source/ li_gen ./tests/*.py
